@@ -4,6 +4,7 @@ import { Gyroscope } from 'expo-sensors';
 import { useSharedValue } from 'react-native-reanimated';
 
 import Ball from './Ball';
+//import Ball2 from './Ball2';
 
 const BallMotion = () => {
 
@@ -26,6 +27,8 @@ const BallMotion = () => {
   return (
     <View style={styles.container}>
       <Ball positionX={positionX.value} positionY={positionY.value} />
+      {/*<Ball2 />*/}
+
     </View>
   );
 }
