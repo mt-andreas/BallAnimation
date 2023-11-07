@@ -15,13 +15,26 @@ const Ball: React.FC<BallProps> = ({ positionX, positionY }) => {
   const translateX = useSharedValue(positionX);
   const translateY = useSharedValue(positionY);
   const [ballSize, setBallSize] = React.useState({state: false, size: screenWidth * 0.1});
-
   
+
+  //Do some checks to prevent the ball from going off the screen
+  if (translateX.value <= -screenHeight/2 + ballSize.size) {
+    translateX.value  = -screenHeight/2 + ballSize.size;
+  } else if (translateX.value >= screenHeight/2 - ballSize.size) {
+    translateX.value = screenHeight/2 - ballSize.size;
+  }
+
+  if (translateY.value <= -screenWidth/2 + ballSize.size) {
+    translateY.value = -screenWidth/2 + ballSize.size;;
+  } else if (translateY.value >= screenWidth/2 - ballSize.size) {
+    translateY.value = screenWidth/2 - ballSize.size;
+  }
+
 
   React.useEffect(() => {
     translateX.value = withSpring(positionX);
     translateY.value = withSpring(positionY);
-  }, [positionX, positionY, ballSize, screenWidth, screenHeight]);
+  }, [positionX, positionY, ballSize]);
 
   const handlePress = () => {
     if (ballSize.state)
@@ -40,6 +53,8 @@ const Ball: React.FC<BallProps> = ({ positionX, positionY }) => {
                 borderRadius: ballSize.size / 2,
                 backgroundColor: 'blue',
                 transform: [{ translateX: translateY }, { translateY: translateX }],
+                maxHeight: screenHeight - ballSize.size,
+                maxWidth: screenWidth - ballSize.size,
             }}
         />
         <View style={styles.button}>
@@ -55,7 +70,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-    },
+      }, 
     button: {
         position: 'absolute',
         bottom: 10,
