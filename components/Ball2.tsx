@@ -5,7 +5,7 @@ import Animated, { useAnimatedSensor, useAnimatedStyle, withSpring, SensorType }
 
 const Ball2: React.FC = () => {
   const screenWidth = Dimensions.get('window').width; 
-  const screenHeight = Dimensions.get('window').height;
+  //const screenHeight = Dimensions.get('window').height;
   const [ballSize, setBallSize] = React.useState({state: false, size: screenWidth * 0.1});
 
 
@@ -24,10 +24,7 @@ const Ball2: React.FC = () => {
     };
   });
   const handlePress = () => {
-    if (ballSize.state)
-        setBallSize({state: false, size: screenWidth * 0.1});
-    if (!ballSize.state)
-        setBallSize({state: true, size: screenWidth * 0.3});
+    ballSize.state ? setBallSize({state: false, size: screenWidth * 0.1}) :  setBallSize({state: true, size: screenWidth * 0.3});
   };
 
   return (

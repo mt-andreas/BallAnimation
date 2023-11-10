@@ -37,10 +37,7 @@ const Ball: React.FC<BallProps> = ({ positionX, positionY }) => {
   }, [positionX, positionY, ballSize]);
 
   const handlePress = () => {
-    if (ballSize.state)
-        setBallSize({state: false, size: screenWidth * 0.1});
-    if (!ballSize.state)
-        setBallSize({state: true, size: screenWidth * 0.3});
+    ballSize.state ? setBallSize({state: false, size: screenWidth * 0.1}) :  setBallSize({state: true, size: screenWidth * 0.3});
   };
 
   return (
@@ -60,7 +57,6 @@ const Ball: React.FC<BallProps> = ({ positionX, positionY }) => {
         <View style={styles.button}>
             <Button onPress={handlePress} title="Toggle Ball Size" />
         </View>
-        
     </View>
   );
 };
