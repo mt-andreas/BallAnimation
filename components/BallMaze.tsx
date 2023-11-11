@@ -18,12 +18,7 @@ const Cell = ({ type  }) => (
   <View style={[styles.cell, { backgroundColor: type === 1 ? 'black' : 'white' }]} />
 );
 
-interface BallPosition {
-    x: number;
-    y: number;
-  }
-
-const Maze: React.FC<BallPosition>  = ({ x, y }, onMoveBall: boolean) => (
+const Maze: React.FC = () => (
   <View style={styles.maze}>
     {maze.map((row, rowIndex) => (
       <View key={rowIndex} style={styles.row}>
@@ -32,24 +27,9 @@ const Maze: React.FC<BallPosition>  = ({ x, y }, onMoveBall: boolean) => (
         ))}
       </View>
     ))}
-    {/*<View style={[styles.ball, { top: ballPosition }]} />*/}
   </View>
 );
 
-const BallMaze = () => {
-  const [ballPosition, setBallPosition] = useState(0);
-
-  const moveBall = () => {
-    // Check if there's an open path below the ball
-    if (ballPosition < maze.length - 1 && maze[ballPosition + 1][2] === 0) {
-      setBallPosition(prevPosition => prevPosition + 1);
-    }
-  };
-
-  return (
-      <Maze ballPosition={ballPosition} onMoveBall={moveBall} />
-  );
-};
 
 const styles = StyleSheet.create({
   maze: {
@@ -73,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BallMaze;
+export default Maze;
