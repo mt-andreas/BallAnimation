@@ -1,16 +1,16 @@
 import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
-import { Dimensions } from 'react-native';
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
 
 interface BallProps {
   positionX: number;
   positionY: number;
+  screenWidth: number;
+  screenHeight: number;
 }
 
-const Ball: React.FC<BallProps> = ({ positionX, positionY }) => {
-  const screenWidth = Dimensions.get('window').width; 
-  const screenHeight = Dimensions.get('window').height;
+const Ball: React.FC<BallProps> = ({ positionX, positionY, screenWidth, screenHeight}) => {
+  
 
   const translateX = useSharedValue(positionX);
   const translateY = useSharedValue(positionY);
@@ -52,6 +52,7 @@ const Ball: React.FC<BallProps> = ({ positionX, positionY }) => {
                 transform: [{ translateX: translateY }, { translateY: translateX }],
                 maxHeight: screenHeight - ballSize.size,
                 maxWidth: screenWidth - ballSize.size,
+                zIndex: 2
             }}
         />
         <View style={styles.button}>
@@ -63,7 +64,7 @@ const Ball: React.FC<BallProps> = ({ positionX, positionY }) => {
 
 const styles = StyleSheet.create({
     contents: {
-        flex: 1,
+      flex:1,
         alignItems: 'center',
         justifyContent: 'center',
       }, 
