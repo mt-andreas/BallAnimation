@@ -22,7 +22,7 @@ const BallMotion = () => {
   const screenWidth = Dimensions.get('window').width; 
   const screenHeight = Dimensions.get('window').height;
 
-  const [{x,y,z}, setGyroscopeData] = React.useState({ x: 0, y: 0, z: 0 });
+  const [{x,y,z}, setGyroscopeData] = React.useState({ x: 0, y: 9.8, z: 0 });
   const positionX = useSharedValue(0-screenHeight/2); //still need to take ball size into account here
   const positionY = useSharedValue(0);
   Gyroscope.setUpdateInterval(16);
