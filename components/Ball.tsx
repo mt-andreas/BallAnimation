@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 import { Dimensions } from 'react-native';
-import Animated, { SharedValue, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import Animated, { SharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 
 const screenWidth = Dimensions.get('window').width; 
 const screenHeight = Dimensions.get('window').height;
@@ -46,7 +46,6 @@ const Ball: React.FC<BallProps> = ({ positionX, positionY }) => {
                 height: ballSize.size,
                 borderRadius: ballSize.size / 2,
                 backgroundColor: 'blue',
-                //transform: [{ translateX: translateY }, { translateY: translateX }],
                 maxHeight: screenHeight - ballSize.size,
                 maxWidth: screenWidth - ballSize.size},
                 astyle
